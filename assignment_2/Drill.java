@@ -12,11 +12,6 @@ public class Drill {
             // and "dog"'s corresponding value is different from answer,
             // this will return false even though there may be a matching pair further down in the map
 
-        //Possible Courses of action
-        //1. CURRENTLY USING THIS: Iterate through the map and manually compare the keys. https://www.baeldung.com/java-iterate-map
-        //2. Use TreeMap w/ case insensitive comparator: https://codereview.stackexchange.com/questions/183127/map-with-case-insensitive-get-remove-and-containskey
-            //Would this implementation be expected to work with all types of maps? If so, the above COA will not work.
-        //3. Drill takes a Map<String,String> and creates a new copy constructor'd map that has each of the keys .toLowerCase()'ed.  O(n) construction time, O(1) lookup.
         for(Map.Entry<String,String> entry: m.entrySet()) {
             if(entry.getKey().equalsIgnoreCase(prompt)) {
                 return entry.getValue().equalsIgnoreCase(answer);
@@ -32,26 +27,21 @@ public class Drill {
         if(m==null || prompt==null || answer==null) {
             throw new NullPointerException("All inputs must have non-null values.");
         }
-        /*  containsKey does not ignore case, this check won't work as currently written
-        if(!m.containsKey(prompt)) {
-            throw new IllegalArgumentException("prompt is not a key in m.");
-        }
-        */
+
         for(Map.Entry<String,String> entry: m.entrySet()) {
             if(entry.getKey().equalsIgnoreCase(prompt)) {
                 return entry.getValue().equalsIgnoreCase(answer);
             }
         }
-        //lol, this technically works i think
+
         throw new IllegalArgumentException("prompt is not a key in m.");
-        //return false;
     }
 
     public static void main(String[] args) throws Exception {
         System.out.println("BEGINNING TESTS...");
 
         Map<String,String> testMap = new HashMap<String,String>();
-        testMap.put("dog","le chien");
+        testMap.put("Dog","le chien");
         System.out.println("MAP CONSISTS OF: " + testMap);
 
         String prompt = "";
