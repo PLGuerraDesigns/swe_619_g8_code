@@ -26,8 +26,8 @@ public class Drill {
     }
 
     public static boolean matchExceptionized(Map<String, String> m, String prompt, String answer) {
-        // Requires: m, prompt, answer not null; prompt is a key in Map m, ignoring case
-        // Effects: returns true iff the Map m maps prompt to answer, ignoring case
+        //Requires: m, prompt, answer not null; prompt is a key in Map m, ignoring case
+        //Effects:  Throws NullPointerException if any inputs are null, Throws an IllegalArgumentException if prompt does not exist as a key in m, returns true iff the Map m maps prompt to answer, ignoring case
 
         if(m==null || prompt==null || answer==null) {
             throw new NullPointerException("All inputs must have non-null values.");
@@ -52,20 +52,26 @@ public class Drill {
 
         Map<String,String> testMap = new HashMap<String,String>();
         testMap.put("dog","le chien");
+        System.out.println("MAP CONSISTS OF: " + testMap);
+
         String prompt = "";
         String answer = "";
-        System.out.println("MAP CONSISTS OF: " + testMap);
+
         //Case 1:
         prompt = "DoG";
         answer = "LE cHiEn";
         System.out.println("Case 1: Prompt = " + prompt + ", Answer = " + answer + ", Result = " + match(testMap,prompt, answer));
+
         System.out.println("-----------------------------------------------------");
+
         System.out.println("TESTING match() WITH EXCEPTIONS...");
         Map<String,String> testMapExceptions = new HashMap<String,String>();
         testMapExceptions.put("dog","le chien");
+        System.out.println("MAP CONSISTS OF: " + testMapExceptions);
+
         String promptE = "";
         String answerE = "";
-        System.out.println("MAP CONSISTS OF: " + testMapExceptions);
+
         //Case 1:
         promptE = "DoG";
         answerE = "LE cHiEn";
