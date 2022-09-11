@@ -38,41 +38,4 @@ public class Drill {
 
         throw new IllegalArgumentException("prompt is not a key in m.");
     }
-
-    public static void main(String[] args) throws Exception {
-        System.out.println("BEGINNING TESTS...");
-
-        Map<String,String> testMap = new HashMap<String,String>();
-        testMap.put("Dog","le chien");
-        System.out.println("MAP CONSISTS OF: " + testMap);
-
-        String prompt = "";
-        String answer = "";
-
-        //Case 1:
-        prompt = "DoG";
-        answer = "LE cHiEn";
-        System.out.println("Case 1: Prompt = " + prompt + ", Answer = " + answer + ", Result = " + match(testMap,prompt, answer));
-
-        System.out.println("-----------------------------------------------------");
-
-        System.out.println("TESTING match() WITH EXCEPTIONS...");
-        Map<String,String> testMapExceptions = new HashMap<String,String>();
-        testMapExceptions.put("dog","le chien");
-        System.out.println("MAP CONSISTS OF: " + testMapExceptions);
-
-        String promptE = "";
-        String answerE = "";
-
-        //Case 1:
-        promptE = "DoG";
-        answerE = "LE cHiEn";
-        System.out.println("Case 1: Prompt = " + promptE + ", Answer = " + answerE + ", Result = " + matchExceptionized(testMapExceptions,promptE, answerE));
-
-        //Case 2:
-        promptE = null;
-        answerE = null;
-        System.out.println("Case 2: Prompt = " + promptE + ", Answer = " + answerE + ", Result = " + matchExceptionized(testMapExceptions,promptE, answerE));
-
-    }
 }
