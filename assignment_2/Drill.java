@@ -6,14 +6,14 @@ public class Drill {
         // Requires: m, prompt, answer not null; prompt is a key in Map m, ignoring case
         // Effects: returns true iff the Map m maps prompt to answer, ignoring case
 
-        // TODO: Modify so that it handles all of its preconditions with exceptions. Use
-        // the standard exceptions recommended by Bloch. Document this with a revised
-        // contract. You can use JavaDoc or you can simply identify the postconditions.
-
-        if (m.get(prompt.toLowerCase()).equals(answer.toLowerCase())) {
-            return true;
+        if (m == null || prompt == null || answer == null) {
+            throw new NullPointerException("All inputs must have non-null values.");
         }
-        return false;
+        if (!m.containsKey(prompt.toLowerCase())) {
+            throw new IllegalArgumentException("prompt is not a key in m.");
+        }
+
+        return m.get(prompt.toLowerCase()).equals(answer.toLowerCase());
     }
 
     public static void main(String[] args) throws Exception {
@@ -34,5 +34,8 @@ public class Drill {
 
         result = match(m, "DoG", "CHieN");
         System.out.println("DoG = CHieN: " + result);
+
+        result = match(m, "rat", "porc");
+        System.out.println("rat = porc: " + result);
     }
 }
