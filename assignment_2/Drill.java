@@ -16,7 +16,7 @@ public class Drill {
             //Would this implementation be expected to work with all types of maps? If so, the above COA will not work.
         //3. Drill takes a Map<String,String> and creates a new copy constructor'd map that has each of the keys .toLowerCase()'ed.  O(n) construction time, O(1) lookup.
         for(Map.Entry<String,String> entry: m.entrySet()) {
-            if(entry.getKey().toLowerCase().equalsIgnoreCase(prompt)) {
+            if(entry.getKey().equalsIgnoreCase(prompt)) {
                 return entry.getValue().equalsIgnoreCase(answer);
             }
         }
