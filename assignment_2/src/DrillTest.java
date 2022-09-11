@@ -1,12 +1,16 @@
+package src;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class DrillTest {
     @Test
-    public static void testDrill(){
-
+    void testDrill(){
         //define default map
         Map<String, String>testMap = new HashMap<String, String>();
         testMap.put("dog", "chien");
@@ -15,15 +19,13 @@ public class DrillTest {
         testMap.put("pig", "porc");
 
         //test correct test cases
-        AssertEquals(true, matchExceptionized(testMap, "dog", "chien"));
-        AssertEquals(true, matchExceptionized(testMap, "cat", "chat"));
-        AssertEquals(true, matchExceptionized(testMap, "bIRd", "oISeau"));
-        AssertEquals(true, matchExceptionized(testMap, "pIG", "pOrC"));
+        assertTrue(Drill.matchExceptionized(testMap, "dog", "chien"));
+        assertTrue(Drill.matchExceptionized(testMap, "cat", "chat"));
+        assertTrue(Drill.matchExceptionized(testMap, "bIRd", "oISeau"));
+        assertTrue(Drill.matchExceptionized(testMap, "pIG", "pOrC"));
 
         //test illegal argument exceptions
-        AssertThrows(IllegalArgumentException.class, matchExceptionized(testMap, null, null));
-        AssertThrows(IllegalArgumentException.class, matchExceptionized(testMap, "horse", "chat"));
-
-
+        assertThrows(NullPointerException.class, () -> Drill.matchExceptionized(testMap, null, null),"test");
+        assertThrows(IllegalArgumentException.class, () -> Drill.matchExceptionized(testMap, "horse", "chat"),"test");
     }
 }
