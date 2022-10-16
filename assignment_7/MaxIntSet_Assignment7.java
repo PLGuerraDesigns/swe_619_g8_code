@@ -7,6 +7,11 @@ import java.util.*;
 // Download MaxIntSet_Assignment7.java
 // Run it
 // TODO: Provide a "detailed/convincing" explanation why repOK() is failing
+/* In the MaxIntSet, element 5 is the biggest element. When 5 is removed from the MaxIntSet, super.remove() is called and repOk
+is checked before the biggest element is reassigned. Therefore, when repOk() is called in MaxIntSet, the biggest value has already been
+removed from the set so the boolean found is never set to true.
+
+*/
 
 class IntSet {
 
@@ -85,6 +90,26 @@ class IntSet {
                 }
         }
         return true;
+    }
+
+    public static void main(String args[]) {
+        MaxIntSet_Assignment7 s = new MaxIntSet_Assignment7();
+        System.out.println(s);
+
+        System.out.println();
+        System.out.println("s.insert(3)");
+        s.insert(3);
+        System.out.println(s);
+
+        System.out.println();
+        System.out.println("s.insert(5)");
+        s.insert(5);
+        System.out.println(s);
+
+        System.out.println();
+        System.out.println("s.remove(5)");
+        s.remove(5);
+        System.out.println(s);
     }
 
 }
