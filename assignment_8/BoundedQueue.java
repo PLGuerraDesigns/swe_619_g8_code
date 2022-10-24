@@ -1,8 +1,21 @@
 package assignment_8;
 
-public class BoundedQueue {
+import java.util.ArrayList;
+import java.util.List;
 
-    protected Object rep[];
+/* 1) Modify it into a fully generic implementation (no compiler warnings).
+ * This was done by replacing Object type with Generic type in lines 6, 38, and 48
+
+ * 2) Replace the array with a List (doing so will eliminate the need for many of the instance variables).
+ * This was done by creating a List of Generics wherever there was an array. The put() and get() functions had to be updated
+   to match ArrayList functions
+
+ * 3) Change the behavior of the methods to include exception handling for all cases not on the happy path.
+ * 
+ */
+public class BoundedQueue<T> {
+
+    protected List<T> rep;
     protected int front = 0;
     protected int back = -1;
     protected int size = 0;
@@ -11,7 +24,7 @@ public class BoundedQueue {
     public BoundedQueue(int size) {
         if (size > 0) {
             this.size = size;
-            rep = new Object[size];
+            rep = new ArrayList<T>(size);
             back = size - 1;
         }
     }
@@ -32,21 +45,22 @@ public class BoundedQueue {
         return size;
     }
 
-    public void put(Object e) {
+    public void put(T e) {
         if (e != null && !isFull()) {
             back++;
             if (back >= size)
                 back = 0;
-            rep[back] = e;
+            rep.add(e);
             count++;
         }
     }
 
-    public Object get() {
-        Object result = null;
+    public T get() {
+        T result = null;
         if (!isEmpty()) {
-            result = rep[front];
-            rep[front] = null;
+            result = rep.get(front);
+            rep.set(front, null);
+            // exception handling
             front++;
             if (front >= size)
                 front = 0;
