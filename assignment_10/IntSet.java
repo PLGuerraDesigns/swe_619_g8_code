@@ -73,13 +73,15 @@ public class IntSet implements Cloneable {
 
    @Override
    public IntSet clone() {
-      //
+      // Original clone method body: 
       // return new IntSet(new ArrayList<Integer>(els));
 
-      // 1.
-      return new IntSet((Vector) els.clone());
+      // 1. This approach uses the copy constructor of the IntSet to build the object. It also uses a clone of the els List so 
+      //    that it's not referencing the same List in memory
+      return new IntSet(els.clone());
 
-      // 2.
+      // 2. Uses the super class's clone method to return a deep copy of the parent class variables, uses the clone method for the 
+      //    variable component unique to IntSet.
       try {
          IntSet newSet = (IntSet) super.clone();
          newSet.els = els.clone();
